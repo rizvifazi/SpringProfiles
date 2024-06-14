@@ -1,27 +1,52 @@
+# The default configuration will have the general configurations
+# The environment specific configurations will be separated by `---` separator
+# We can as many custom configurations as we want in a single application.yml
+
+# Default Configuration
+
 spring:
   application:
-   name: SpringProfiles
+    name: SpringBootMVC
   mvc:
-   view:
-    prefix: /WEB-INF/views/
-    suffix: .jsp
-   
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  profiles:
+    active: dev
+
+server:
+  port: 3000
+  servlet:
+    context-path: /mvc
+
+logging:
+  level:
+    web: DEBUG
+
+message: Welcome default user
+
+---
+# Development Environment Configuration
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+
 server:
   port: 2000
-  servlet:
-   context-path: /mvc
-   
-message: This is default user
 
-# ---
-# Must include for JSP pages
-# spring.mvc.view.prefix=/WEB-INF/views/
-# spring.mvc.view.suffix=.jsp
+message: Welcome Development user
 
-# Custom port and context-path are a good practice
-# server.port=2000
-# server.servlet.context-path=/mvc
+---
+# Production Environment Configuration
 
-# custom message retrieved by the controller program to pass to view page using @Value
-# message=This is default user
-# ---
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+server:
+  port: 4000
+
+message: Welcome production user
