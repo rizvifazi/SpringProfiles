@@ -9,7 +9,10 @@
 	</head>
 
 	<body>
-		<h2>Welcome to Spring Boot MVC application</h2>
+		<h1>Welcome to Spring Boot MVC application</h1>
+		<!--The below message using Spring Expression Language-->
+		<!--The below message is passed here from ProfileController-->
+		<h2>${message}</h2>
 	</body>
 
 	</html>
